@@ -1,0 +1,24 @@
+{
+  "dependencies": {
+    "discord.js": "^14.6.0",
+    "request": "^2.88.2"
+  },
+  "name": "hmrdiscordbot",
+  "description": "Creating a chatbot for a the social platform 'Discord'",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Ricekeet/HMRDiscordBot.git"
+  },
+  "keywords": [],
+  "author": "Ricekeet",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Ricekeet/HMRDiscordBot/issues"
+  },
+  "homepage": "https://github.com/Ricekeet/HMRDiscordBot#readme"
+}
