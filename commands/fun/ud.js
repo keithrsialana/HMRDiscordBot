@@ -45,11 +45,16 @@ module.exports = {
             		{
             			name: `Example`,
             			value: `${returnedData.list[0].example}`,
-            			inline: true
+            			inline: false
             		},
             		{
             			name: `Thumbs Ups`,
             			value: `${returnedData.list[0].thumbs_up}`,
+            			inline: true
+            		},
+            		{
+            			name: `Thumbs Downs`,
+            			value: `${returnedData.list[0].thumbs_down}`,
             			inline: true
             		}
             	])
@@ -59,7 +64,7 @@ module.exports = {
             	})
             	.setFooter({
             		iconURL: 'https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftse1.mm.bing.net%2Fth%3Fid%3DOIP.q7r_72mq8aFFyvZGyryl0gAAAA%26pid%3DApi&f=1&ipt=e186212f972791f2df7f563fcf25a826697eb3c62d937a837e42ee56b861140a&ipo=images',
-            		text: 'Urban Dictionary API'
+            		text: `${returnedData.list[0].author}`
             	})
             	.setURL(returnedData.list[0].permalink);
 
