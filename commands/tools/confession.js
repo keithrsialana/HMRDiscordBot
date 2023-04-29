@@ -1,5 +1,5 @@
 const { EmbedBuilder } = require('@discordjs/builders');
-const { SlashCommandBuilder } = require('discord.js');
+const { SlashCommandBuilder, Embed } = require('discord.js');
 
 module.exports = {
     data: new SlashCommandBuilder()
@@ -14,7 +14,13 @@ module.exports = {
 
     async execute(interaction, client) {
         // get the user input from options
+        const embed = new EmbedBuilder()
+        .setTitle("Confession")
+        .setDescription(interaction.options.get("confession").value)
+        .setColor(0xba35c6)
+        .setTimestamp(Date.now());
         var confession = interaction.options._hoistedOptions[0].value
-        await interaction.reply({content:`${confession}!`, ephemeral: false});
+        await interaction.reply({content:"Confession sent!", ephemeral: true});
+        await interaction.channel.send({embeds:[embed], ephemeral: false});
     },
 };

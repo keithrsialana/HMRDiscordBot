@@ -6,6 +6,7 @@ module.exports = (client) => {
   client.handleCommands = async () => {
     const commandFolders = fs.readdirSync("./commands");
 
+    console.log("Passing commands through the handler...");
     for (const folder of commandFolders) {
       const commandFiles = fs
         .readdirSync(`./commands/${folder}`)
@@ -16,9 +17,6 @@ module.exports = (client) => {
         const command = require(`../../commands/${folder}/${file}`);
         commands.set(command.data.name, command);
         commandsArray.push(command, command.data.toJSON());
-        console.log(
-          `Command: ${command.data.name} has been passed through the handler`
-        );
       }
     }
   };
