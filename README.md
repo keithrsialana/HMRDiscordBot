@@ -2,18 +2,16 @@
 Creating a chatbot for a the social platform 'Discord'
 
 ## Setup
-Requires 
+Requires discord.js and request modules 
 ```
 npm install discord.js
 ```
-and
 ```
 npm install request
 ```
 
 ## Running
-Use
+Use this from the base folder
 ```
 node .
 ```
-from the base folder
