@@ -1,5 +1,5 @@
 const axios = require('axios');
-const {rapidAPI_key} = require('../../config.json');
+const {EmbedBuilder} = require('discord.js');
 module.exports = {
     data: {
       name: "horoscope",
@@ -13,51 +13,51 @@ module.exports = {
           choices:[
             {
               name: "Aries",
-              value: "aries"
+              value: "Aries"
             },
             {
               name: "Taurus",
-              value: "taurus"
+              value: "Taurus"
             },
             {
               name: "Gemini",
-              value: "gemini"
+              value: "Gemini"
             },
             {
               name: "Cancer",
-              value: "cancer"
+              value: "Cancer"
             },
             {
               name: "Leo",
-              value: "leo"
+              value: "Leo"
             },
             {
               name: "Virgo",
-              value: "virgo"
+              value: "Virgo"
             },
             {
               name: "Libra",
-              value: "libra"
+              value: "Libra"
             },
             {
               name: "Scorpio",
-              value: "scorpio"
+              value: "Scorpio"
             },
             {
               name: "Sagittarius",
-              value: "sagittarius"
+              value: "Sagittarius"
             },
             {
               name: "Capricorn",
-              value: "capricorn"
+              value: "Capricorn"
             },
             {
               name: "Aquarius",
-              value: "aquarius"
+              value: "Aquarius"
             },
             {
               name: "Pisces",
-              value: "pisces"
+              value: "Pisces"
             }
           ]
         }
@@ -68,25 +68,28 @@ module.exports = {
     async execute(interaction,client) {
         const options = {
             method: 'POST',
-            url: 'https://sameer-kumar-aztro-v1.p.rapidapi.com/',
-            params: {
-              sign: interaction.options.get("sign").value.toString(),
-              day: 'today'
-            },
+            url: `https://ohmanda.com/api/horoscope/${interaction.options.get("sign").value.toLowerCase()}/`,
             headers: {
-              'content-type': 'application/octet-stream',
-              'X-RapidAPI-Key': rapidAPI_key,
-              'X-RapidAPI-Host': 'sameer-kumar-aztro-v1.p.rapidapi.com'
+              'content-type': 'application/json',
             }
-          };
-          
-          
+          };          
           try {
               const response = await axios.request(options);
-              console.log(response.data);
+              
+              const embed = new EmbedBuilder()
+              .setTitle(`${interaction.options.get("sign").value}`)
+              .setDescription(`${response.data.horoscope}`)
+              .setColor(0x18e1ee)
+              .setTimestamp(Date.parse(response.data.date))
+              .setFooter({
+                text: "Ohmanda.com Horoscope API"
+              })
+              await interaction.reply({
+                embeds: [embed],
+                ephemeral: false
+              })
           } catch (error) {
               console.error(error);
           }
-          console.log(interaction.options.get("sign").value);
     },
 }
