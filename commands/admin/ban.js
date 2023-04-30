@@ -1,5 +1,5 @@
 const {PermissionFlagsBits, SlashCommandBuilder} = require('discord.js');
-
+// TODO: ban doesn't work
 module.exports = {
     data: new SlashCommandBuilder()
     .setName('ban')

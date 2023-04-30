@@ -1,5 +1,5 @@
 const {PermissionFlagsBits, SlashCommandBuilder} = require('discord.js');
-
+// TODO: kick doesn't work
 module.exports = {
     data: new SlashCommandBuilder()
     .setName('kick')
@@ -17,7 +17,8 @@ module.exports = {
         )
     .setDefaultMemberPermissions(PermissionFlagsBits.KickMembers),
     async execute(interaction,client){
-        const user = interaction.options.get("user").user
+        console.log(interaction.options.get("user"));
+        const user = interaction.options.get("user");
         const reason = interaction.options.get('reason').value
         user.kick(interaction.options.get('reason').value)
         await interaction.reply({
