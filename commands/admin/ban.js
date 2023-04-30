@@ -2,8 +2,8 @@ const {PermissionFlagsBits, SlashCommandBuilder} = require('discord.js');
 
 module.exports = {
     data: new SlashCommandBuilder()
-    .setName('kick')
-    .setDescription('Kick a server member')
+    .setName('ban')
+    .setDescription('Ban a server member')
     .addUserOption(option =>
         option
         .setName('user')
@@ -13,15 +13,15 @@ module.exports = {
     .addStringOption(option =>
         option
         .setName('reason')
-        .setDescription('The reason for the kick')
+        .setDescription('The reason for the ban')
         )
-    .setDefaultMemberPermissions(PermissionFlagsBits.KickMembers),
+    .setDefaultMemberPermissions(PermissionFlagsBits.BanMembers),
     async execute(interaction,client){
         const user = interaction.options.get("user").user
         const reason = interaction.options.get('reason').value
-        user.kick(interaction.options.get('reason').value)
+        user.ban(interaction.options.get('reason').value)
         await interaction.reply({
-            content: `${user.username}#${user.discriminator} was kicked. Reason: ${reason}`,
+            content: `${user.username}#${user.discriminator} was banned. Reason: ${reason}`,
             ephemeral: true
         });
     }
