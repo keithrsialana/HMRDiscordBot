@@ -17,7 +17,7 @@ module.exports = {
         const embed = new EmbedBuilder()
         .setTitle("Confession")
         .setDescription(interaction.options.get("confession").value)
-        .setColor(0xba35c6)
+        .setColor(0xa641d8)
         .setTimestamp(Date.now());
         var confession = interaction.options._hoistedOptions[0].value
         await interaction.reply({content:"Confession sent!", ephemeral: true});
