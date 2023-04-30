@@ -1,5 +1,5 @@
 const {PermissionFlagsBits, SlashCommandBuilder} = require('discord.js');
-// TODO: ban doesn't work
+
 module.exports = {
     data: new SlashCommandBuilder()
     .setName('ban')
@@ -17,11 +17,11 @@ module.exports = {
         )
     .setDefaultMemberPermissions(PermissionFlagsBits.BanMembers),
     async execute(interaction,client){
-        const user = interaction.options.get("user").user
+        const user = interaction.options.get("user").member;
         const reason = interaction.options.get('reason').value
         user.ban(interaction.options.get('reason').value)
         await interaction.reply({
-            content: `${user.username}#${user.discriminator} was banned. Reason: ${reason}`,
+            content: `${user.user.username}#${user.user.discriminator} was banned. Reason: ${reason}`,
             ephemeral: true
         });
     }
