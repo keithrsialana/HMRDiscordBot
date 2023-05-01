@@ -79,7 +79,7 @@ module.exports = {
               const embed = new EmbedBuilder()
               .setTitle(`${interaction.options.get("sign").value}`)
               .setDescription(`${response.data.horoscope}`)
-              .setColor(0x18e1ee)
+              .setColor('Purple')
               .setTimestamp(Date.parse(response.data.date))
               .setFooter({
                 text: "Ohmanda.com Horoscope API"

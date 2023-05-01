@@ -38,7 +38,7 @@ module.exports = {
             const embed = new EmbedBuilder()
             	.setTitle(returnedData.list[0].word)
             	.setDescription(returnedData.list[0].definition)
-            	.setColor(0x18e1ee)
+            	.setColor('Purple')
             	.setThumbnail('https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftse1.mm.bing.net%2Fth%3Fid%3DOIP.q7r_72mq8aFFyvZGyryl0gAAAA%26pid%3DApi&f=1&ipt=e186212f972791f2df7f563fcf25a826697eb3c62d937a837e42ee56b861140a&ipo=images')
             	.setTimestamp(Date.parse(returnedData.list[0].written_on))
             	.addFields([
