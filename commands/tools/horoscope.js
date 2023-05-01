@@ -64,7 +64,6 @@ module.exports = {
       ]
     },
 
-    // TODO: Fix request object
     async execute(interaction,client) {
         const options = {
             method: 'POST',
@@ -79,7 +78,7 @@ module.exports = {
               const embed = new EmbedBuilder()
               .setTitle(`${interaction.options.get("sign").value}`)
               .setDescription(`${response.data.horoscope}`)
-              .setColor('Purple')
+              .setColor(0x9C59B6)
               .setTimestamp(Date.parse(response.data.date))
               .setFooter({
                 text: "Ohmanda.com Horoscope API"

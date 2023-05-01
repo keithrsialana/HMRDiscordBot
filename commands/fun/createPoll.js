@@ -66,7 +66,7 @@ module.exports = {
         .setTitle("Poll")
         .setDescription(question)
         .setThumbnail("https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fimages.vexels.com%2Fmedia%2Fusers%2F3%2F152593%2Fisolated%2Fpreview%2Fd6368d8155eb832733a200df87f48e92-purple-circle-question-mark-icon-by-vexels.png&f=1&nofb=1&ipt=cbc45922a9d2c5f75c663a3304708a9bff1314064d588c0cca877621387321f6&ipo=images")
-        .setColor('Purple');
+        .setColor(0x9C59B6);
 
         // Add fields, can include optional ones
         const emojiArrays = ['1️⃣','2️⃣','3️⃣','4️⃣','5️⃣'];
