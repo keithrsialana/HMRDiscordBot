@@ -33,9 +33,15 @@ var commandIDsToDelete = [
 ];
 
 for (const c of commandIDsToDelete){
-	rest.delete(Routes.applicationGuildCommand(clientId, guildID, c))
-	.then(() => console.log('Successfully deleted guild command'))
-	.catch(console.error);
+	try{
+		rest.delete(Routes.applicationGuildCommand(clientId, guildID, c))
+		.then(() => console.log('Successfully deleted guild command'))
+		.catch(console.error);
+	}catch{
+		rest.delete(Routes.applicationCommand(clientId, c))
+		.then(() => console.log('Successfully deleted global command'))
+		.catch(console.error);
+	}
 }
 
 // and deploy your commands!
