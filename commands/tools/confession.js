@@ -20,8 +20,6 @@ module.exports = {
         .setDescription(interaction.options.get("confession").value)
         .setColor(0x9C59B6)
         .setTimestamp(Date.now());
-        var confession = interaction.options._hoistedOptions[0].value;
-
         
         if (interaction.channel.id == 485024625437310978){
             await interaction.reply({content: "Your confession was sent!", ephemeral:true});
