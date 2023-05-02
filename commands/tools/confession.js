@@ -24,7 +24,7 @@ module.exports = {
 
         
         if (interaction.channel.id == 485024625437310978){
-            await interaction.reply("Your confession was sent!");
+            await interaction.reply({content: "Your confession was sent!", ephemeral:true});
             await interaction.channel.send({embeds:[embed], ephemeral: false});
         }else{
             const confessionChannel = interaction.guild.channels.cache.get('485024625437310978').toString();
