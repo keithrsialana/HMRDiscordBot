@@ -28,6 +28,19 @@ for (const folder of functionFolders) {
   for (const file of functionsFiles)
     require(`./functions/${folder}/${file}`)(client);    
 }
+// diagnosing discord api errors
+client.on("unhandledRejection", async (err) => {
+  console.error("Unhandled Promise Rejection:\n", err);
+});
+client.on("uncaughtException", async (err) => {
+  console.error("Uncaught Promise Exception:\n", err);
+});
+client.on("uncaughtExceptionMonitor", async (err) => {
+  console.error("Uncaught Promise Exception (Monitor):\n", err);
+});
+client.on("multipleResolves", async (type, promise, reason) => {
+  console.error("Multiple Resolves:\n", type, promise, reason);
+});
 
 client.handleEvents();
 client.handleCommands();
