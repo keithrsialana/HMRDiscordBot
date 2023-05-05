@@ -17,6 +17,8 @@ module.exports = {
             if (!econUser){
                 econHandler.addUser(member.user);
                 econUser = econHandler.findUser(member.user.id);
+                if (!econUser)
+                    return;
             }
 
             econHandler.addPoints(member.user.id, PER_MESSAGE_POINTS);

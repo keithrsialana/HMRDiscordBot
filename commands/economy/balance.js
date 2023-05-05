@@ -26,6 +26,8 @@ module.exports = {
         if (!econUser){
             economyHandler.addUser(user.user);
             econUser = economyHandler.findUser(user.user.id);
+            if (!econUser)
+                return;
         }
 
         let embed = new EmbedBuilder()
