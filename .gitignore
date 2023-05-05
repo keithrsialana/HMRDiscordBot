@@ -1,5 +1,5 @@
 config.json
-economy/economy.json
-economy/items.json
+data/economy/economy.json
+data/economy/items.json
 .vscode
 .vs

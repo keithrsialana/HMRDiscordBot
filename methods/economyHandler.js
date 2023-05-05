@@ -1,8 +1,8 @@
 const fs = require('fs');
 const util = require('util');
 const writeFile = util.promisify(fs.writeFile);
-const economyPath = '../economy/economy.json'; // Confirmed path
-const itemsPath = '../economy/items.json'; // Confirmed path
+const economyPath = '../data/economy/economy.json'; // Confirmed path
+const itemsPath = '../data/economy/items.json'; // Confirmed path
 const eData = require(economyPath);
 const iData = require(itemsPath);
 
@@ -19,7 +19,7 @@ module.exports = {
     },
     async saveEconData() {
         try {
-          await writeFile('./economy/economy.json', JSON.stringify(this.economy), (err) => {
+          await writeFile('./data/economy/economy.json', JSON.stringify(this.economy), (err) => {
             if (err) throw err;
             console.log('Data written to file');
           });
@@ -29,7 +29,7 @@ module.exports = {
     },
     async saveItemData() {
         try {
-            await writeFile('./economy/items.json', JSON.stringify(this.items), (err) => {
+            await writeFile('./data/economy/items.json', JSON.stringify(this.items), (err) => {
                 if (err) throw err;
                 console.log('Data written to file');
               });

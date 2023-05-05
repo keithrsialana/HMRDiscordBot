@@ -1,4 +1,4 @@
-const { PermissionFlagsBits,SlashCommandBuilder } = require("discord.js");
+const { PermissionFlagsBits , SlashCommandBuilder } = require("discord.js");
 const econHandler = require("../../methods/economyHandler.js");
 
 module.exports = {
