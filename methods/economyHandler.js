@@ -83,6 +83,7 @@ module.exports = {
             balance: 0,
             lastDaily: null,
             lastMonthly: null,
+            voiceJoinedAt: null,
             boughtItems: [],
         }
 
