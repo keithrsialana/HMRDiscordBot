@@ -5,6 +5,7 @@ module.exports = {
 	async execute(client, interaction) {
 		if (!interaction.isChatInputCommand()) return;
 
+		// Tries to find the command within the existing command files
 		const command = interaction.client.commands.get(interaction.commandName);
 
 		if (!command) {
@@ -12,6 +13,7 @@ module.exports = {
 			return;
 		}
 
+		// Command module async method 'execute' is performed when the interactionCreate event is triggered
 		try {
 			await command.execute(interaction, client);
 		} catch (error) {

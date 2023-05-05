@@ -1,5 +1,6 @@
 const { SlashCommandBuilder } = require("discord.js");
 const econHandler = require('../../methods/economyHandler.js');
+const {MONTHLY_POINTS} = require('../../data/economy/econSettings.json');
 
 module.exports = {
     data: new SlashCommandBuilder()
@@ -26,10 +27,10 @@ module.exports = {
                 // If there is no record of monthly date, OR if the lastMonthly date IS MORE THAN lastMonthly + a month in miliseconds
                 if (econUser.lastMonthly == null || Date.parse(econUser.lastMonthly) >= Date.parse(econUser.lastMonthly) + 2629800000) {
                     econUser.lastMonthly = today;
-                    econHandler.addPoints(econUser.id, 400);
-                    await interaction.reply({ content: "You claimed your monthly 400 points! Run this command again next month for 400 more!" });
+                    econHandler.addPoints(econUser.id, MONTHLY_POINTS);
+                    await interaction.reply({ content: `You claimed your monthly ${MONTHLY_POINTS} points! Run this command again next month for ${MONTHLY_POINTS} more!` });
                 } else {
-                    await interaction.reply("You have already claimed your monthly 400 this month! Try again next month");
+                    await interaction.reply(`You have already claimed your monthly ${MONTHLY_POINTS} this month! Try again next month`);
                 }
             }
             else {

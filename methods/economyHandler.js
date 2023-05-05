@@ -62,7 +62,7 @@ module.exports = {
         if (!this.economy)
             this.economy = eData;
         try {
-            const user = this.economy.economyData.find(x => x.id === userID);
+            const user = this.economy.economyData.find(x => x.id == userID);
             if (user){
                 return user;
             }

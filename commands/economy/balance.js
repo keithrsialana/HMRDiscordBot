@@ -23,9 +23,13 @@ module.exports = {
 
         const user = mentionedUser ? mentionedUser : interaction.member;
         let econUser = economyHandler.findUser(user.user.id);
+        if (!econUser){
+            economyHandler.addUser(user.user);
+            econUser = economyHandler.findUser(user.user.id);
+        }
 
         let embed = new EmbedBuilder()
-        .setTitle(`${user.nickname? user.nickname:user.user.username}'s balance`)
+        .setTitle(`${user.nickname ? user.nickname : user.user.username}'s balance`)
         .setDescription(`${mentionedUser ? (user.nickname ? user.nickname : user.user.username):'You'} ${mentionedUser ? 'has':'have'} ${numberWithCommas(econUser.balance)} rice points!`);
 
         await interaction.reply({embeds: [embed]});
