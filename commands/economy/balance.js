@@ -12,13 +12,13 @@ module.exports = {
             // Convert the number to a string and use a regular expression to add commas every 3rd digit
             return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
           }
-        const user = interaction.member.user;
+        const user = interaction.member;
         let econUser = economyHandler.findUser(user.id);
 
         let embed = new EmbedBuilder()
-        .setTitle(`${user.username}'s balance`)
+        .setTitle(`${user.nickname? user.nickname:user.user.username}'s balance`)
         .setDescription(`You have ${numberWithCommas(econUser.balance)} rice points!`);
-        
+
         await interaction.reply({embeds: [embed]});
     }
 }

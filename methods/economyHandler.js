@@ -82,6 +82,7 @@ module.exports = {
             id:userObject.id,
             balance: 0,
             lastDaily: null,
+            lastMonthly: null,
             boughtItems: [],
         }
 
