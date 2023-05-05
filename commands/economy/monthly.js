@@ -23,7 +23,8 @@ module.exports = {
 
             econUser = econHandler.economy.economyData.find(x => x.id == user.id);
             if (econUser) {
-                if (econUser.lastMonthly == null || Date.parse(econUser.lastMonthly) < Date.parse(econuser.lastMonthly) + 2629800000) {
+                // If there is no record of monthly date, OR if the lastMonthly date IS MORE THAN lastMonthly + a month in miliseconds
+                if (econUser.lastMonthly == null || Date.parse(econUser.lastMonthly) >= Date.parse(econUser.lastMonthly) + 2629800000) {
                     econUser.lastMonthly = today;
                     econHandler.addPoints(econUser.id, 400);
                     await interaction.reply({ content: "You claimed your monthly 400 points! Run this command again next month for 400 more!" });
@@ -32,7 +33,7 @@ module.exports = {
                 }
             }
             else {
-                console.log("Could not find user to add daily points");
+                console.log("Could not find user to add monthly points");
             }
         } catch (error) {
             await interaction.reply({ content: "There was a problem with adding your points: " + error, ephemeral: true });

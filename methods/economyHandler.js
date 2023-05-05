@@ -95,6 +95,11 @@ module.exports = {
             console.log("Could not add new user");
         }
     },
+    setPoints(userID, points) {
+        let eUser = this.findUser(userID);
+        eUser.balance = points;
+        this.saveEconData();
+    },
     addPoints(userID, points) {
         let eUser = this.findUser(userID);
         eUser.balance += points;
