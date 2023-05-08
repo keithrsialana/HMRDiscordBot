@@ -50,14 +50,18 @@ module.exports = {
     },
 
     // USERS -------------------------------
-    updateUser(user) {
-        try{
-            this.economy.economyData.find(x => x.id == user.id) = user;
-            this.saveEconData();
-        }catch{
-            console.log(`Could not update user ${user.id}`);
-        }
-    },
+    // updateUser(guildUser) {
+    //     const user = guildUser.user;
+    //     try{
+    //         let dbUser = this.findUser(user.id);
+    //         console.log(dbUser);
+    //         console.log(JSON.stringify(guildUser));
+    //         dbUser.guildUserID = guildUser.id;
+    //         this.saveEconData();
+    //     }catch{
+    //         console.log(`Could not update user ${user.id}`);
+    //     }
+    // },
     findUser(userID) {
         if (!this.economy)
             this.economy = eData;
@@ -70,9 +74,10 @@ module.exports = {
             console.log(`Could not find User Data`);
         }
     },
-    addUser(userObject) {
+    addUser(guildUser) {
         // if it's a bot, skip this method
-        if(userObject.bot)
+        const userObject = guildUser.user;
+        if(userObject.bot || userObject.system)
             return;
 
         var today = new Date();
@@ -83,7 +88,8 @@ module.exports = {
         today = mm + '/' + dd + '/' + yyyy;
 
         let u = {
-            id:userObject.id,
+            guildUserID: guildUser.id,
+            id: userObject.id,
             balance: 0,
             lastDaily: null,
             lastMonthly: null,
