@@ -74,9 +74,8 @@ module.exports = {
             console.log(`Could not find User Data`);
         }
     },
-    addUser(guildUser) {
+    addUser(userObject) {
         // if it's a bot, skip this method
-        const userObject = guildUser.user;
         if(userObject.bot || userObject.system)
             return;
 
@@ -88,7 +87,6 @@ module.exports = {
         today = mm + '/' + dd + '/' + yyyy;
 
         let u = {
-            guildUserID: guildUser.id,
             id: userObject.id,
             balance: 0,
             lastDaily: null,

@@ -14,7 +14,7 @@ module.exports = {
     ,
 
     async execute(interaction, client){
-        // interaction.options.get("user") should return a GuildMember object
+        // interaction.options.get("user") returns an object that isn't in any Documentations. Check stringified JSON on the object
         const mentionedUser = interaction.options.get("user") ? interaction.options.get("user") : null;
         const numberWithCommas = (number) => {
             // Convert the number to a string and use a regular expression to add commas every 3rd digit
