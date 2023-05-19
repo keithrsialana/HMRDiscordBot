@@ -25,7 +25,7 @@ module.exports = {
                 top100.push({
                     number: i+1,
                     name: member?(member.nickname?member.nickname:member.user.username)+"#"+member.user.discriminator:"Unknown",
-                    points: pointsData[i].balance
+                    points: pointsData[i].balance.toLocaleString("en-US")
                 }
             );
             }catch(err){

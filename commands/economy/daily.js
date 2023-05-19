@@ -5,7 +5,7 @@ const {DAILY_POINTS, GENERAL_CHAT_ID} = require('../../data/economy/econSettings
 module.exports = {
     data: new SlashCommandBuilder()
     .setName("daily")
-    .setDescription("Get your daily 20 Ricebot points!"),
+    .setDescription(`Get your daily ${DAILY_POINTS} Ricebot points!`),
 
     async execute(interaction, client) {
         const user = interaction.member.user;
@@ -28,6 +28,7 @@ module.exports = {
                 if(econUser.lastDaily == null || Date.parse(econUser.lastDaily) < Date.parse(today)){
                     econUser.lastDaily = today;
                     econHandler.addPoints(econUser.id, DAILY_POINTS);
+                    console.log(`daily: ${econUser.id} now has ${econUser.balance}`);
                     if(!interaction.channel.id == GENERAL_CHAT_ID)
                         await interaction.reply({content: `You claimed your ${DAILY_POINTS} points! Run this command again tomorrow for ${DAILY_POINTS} more!`});
                     else
