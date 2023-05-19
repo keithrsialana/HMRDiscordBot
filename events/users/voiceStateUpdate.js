@@ -11,10 +11,23 @@ module.exports = {
     // newMember: VoiceState object
 	async execute(client, oldMember, newMember) {
         // check if it is not a bot
-        if(!econHandler.findUser(oldMember.id) && !econHandler.findUser(newMember.id))
+        let user = oldMember.guild.members.cache.get(oldMember.id).user; 
+        if (user.bot)
             return;
 
-        let econUser = econHandler.findUser(oldMember.id);
+        let econUser;
+        try{
+            econUser = econHandler.findUser(oldMember.id);
+        }catch(err){
+            console.log(`Something went wrong in voiceStateUpdate.js\n${err}`);
+        }
+
+        // Adds the user to the database if they don't exist yet
+        if (!econUser){
+            econHandler.addUser(user);
+            econUser = econHandler.findUser(oldMember.id);
+        }
+
         // check if user joined a voice channel
             // Specific to users who joined a channel
         if(oldMember.channel == null && newMember.channel){
@@ -29,39 +42,52 @@ module.exports = {
         }
 
         // check if user left a voice channel
-        if(oldMember.channel && newMember.channel == null){
-            
+        else if(oldMember.channel != null && newMember.channel == null){          
             try {
                 // add points depending on how long the user stayed in that voice channel
                 const now = Date.now();
 
+                // Checks if the Joined Date and Time doesn't exist, exits as it will make a calculation error
             if (econUser.voiceJoinedAt == null)
-                econUser.voiceJoinedAt = 0;
-            // WATCH
-            console.log(`--------------------------------\n\tNow: ${now}`);
+                return;
+            else{
                 const timeDiff = now - econUser.voiceJoinedAt;
-            // WATCH
-            console.log(`\ttimeDiff: ${now} - ${econUser.voiceJoinedAt} = ${timeDiff}`);
-                if (timeDiff < 0)
+                
+                if (timeDiff < 0){
+                    econUser.voiceJoinedAt = null;
+                    econHandler.saveEconData();
                     return;
+                }
+
                 if(econUser.voiceJoinedAt)
                     econUser.voiceJoinedAt = null;
+                    econHandler.saveEconData();
                 const seconds = timeDiff / 1000;
-            // WATCH
-            console.log(`\tseconds: ${timeDiff} / 1000 = ${seconds}`);
-                if (seconds <= 0)
+
+                if (seconds <= 0){
+                    econUser.voiceJoinedAt = null;
+                    econHandler.saveEconData();
                     return;
+                }
                 const pointsToAdd = Math.trunc(seconds * PER_SECOND_POINTS);
-            // WATCH
-            console.log(`\tpointsToAdd: Math.trunc(${seconds} * ${PER_SECOND_POINTS}) = ${pointsToAdd}\n--------------------------------`);
-                if(pointsToAdd <= 0)
+
+                if(pointsToAdd <= 0){
+                    econUser.voiceJoinedAt = null;
+                    econHandler.saveEconData();
                     return;
+                }
                 econHandler.addPoints(oldMember.id, pointsToAdd);
                 console.log(`voiceStateUpdate: ${econUser.id} now has ${econUser.balance}`);
                 return;
+            }
+
+            
             }catch(err){
                 console.log("Could not update user's voiceJoinedAt attribute");
             }
+        }
+        else{
+            console.log(`User ${oldMember.id} has connected to a Voice Channel`);
         }
     }
 };
