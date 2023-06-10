@@ -5,7 +5,7 @@ const {MONTHLY_POINTS} = require('../../data/economy/econSettings.json');
 module.exports = {
     data: new SlashCommandBuilder()
         .setName("monthly")
-        .setDescription(`Get your monthly ${MONTHLY_POINTS} Ricebot points!`),
+        .setDescription(`Get your monthly ${MONTHLY_POINTS.toLocaleString("en-US")} Ricebot points!`),
 
     async execute(interaction, client) {
         const user = interaction.member.user;
@@ -29,9 +29,9 @@ module.exports = {
                     econUser.lastMonthly = today;
                     econHandler.addPoints(econUser.id, MONTHLY_POINTS);
                     console.log(`monthly: ${econUser.id} now has ${econUser.balance}`);
-                    await interaction.reply({ content: `You claimed your monthly ${MONTHLY_POINTS} points! Run this command again next month for ${MONTHLY_POINTS} more!` });
+                    await interaction.reply({ content: `You claimed your monthly ${MONTHLY_POINTS.toLocaleString("en-US")} points! Run this command again next month for ${MONTHLY_POINTS.toLocaleString("en-US")} more!` });
                 } else {
-                    await interaction.reply(`You have already claimed your monthly ${MONTHLY_POINTS} this month! Try again next month`);
+                    await interaction.reply(`You have already claimed your monthly ${MONTHLY_POINTS.toLocaleString("en-US")} this month! Try again next month`);
                 }
             }
             else {

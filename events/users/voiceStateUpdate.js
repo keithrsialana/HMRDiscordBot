@@ -31,7 +31,7 @@ module.exports = {
         // check if user joined a voice channel
             // Specific to users who joined a channel
         if(oldMember.channel == null && newMember.channel){
-            if(econUser.voiceJoinedAt == null)
+            if(econUser.voiceJoinedAt == null || econUser.voiceJoinedAt == 0)
                 econUser.voiceJoinedAt = Date.now();
             try {
                 econHandler.saveEconData();
@@ -72,6 +72,7 @@ module.exports = {
                 const pointsToAdd = Math.trunc(seconds * PER_SECOND_POINTS);
 
                 if(pointsToAdd <= 0){
+                    console.log(`voiceStateUpdate: ${econUser.id} only generated ${pointsToAdd} points`);
                     econUser.voiceJoinedAt = null;
                     econHandler.saveEconData();
                     return;
