@@ -50,18 +50,21 @@ module.exports = {
     },
 
     // USERS -------------------------------
-    // updateUser(guildUser) {
-    //     const user = guildUser.user;
-    //     try{
-    //         let dbUser = this.findUser(user.id);
-    //         console.log(dbUser);
-    //         console.log(JSON.stringify(guildUser));
-    //         dbUser.guildUserID = guildUser.id;
-    //         this.saveEconData();
-    //     }catch{
-    //         console.log(`Could not update user ${user.id}`);
-    //     }
-    // },
+    //TODO:
+    calculateLevel(userID){
+        if (!this.economy)
+            this.economy = eData;
+        try {
+            const user = findUser(userID)
+            if (user){
+                // 0.111358851 * x^0.5
+                var result = 0.111358851 * (user.xp ** 0.5);
+                return Math.floor(result);
+            }
+        }catch{
+            console.log(`Couldn't calculate the user's Level`);
+        }    
+    },
     findUser(userID) {
         if (!this.economy)
             this.economy = eData;
@@ -88,6 +91,7 @@ module.exports = {
 
         let u = {
             id: userObject.id,
+            xp: 0,
             balance: 0,
             lastDaily: null,
             lastMonthly: null,
@@ -111,6 +115,7 @@ module.exports = {
     },
     addPoints(userID, points) {
         let eUser = this.findUser(userID);
+        eUser.xp += points;
         eUser.balance += points;
         this.saveEconData();
     },

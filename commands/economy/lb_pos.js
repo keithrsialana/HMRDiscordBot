@@ -5,7 +5,7 @@ const maxEmbedNumber = 10000;
 
 module.exports = {
     data: new SlashCommandBuilder()
-        .setName(lb_position)
+        .setName('lb_position')
         .setDescription(`Tells you where you are placed in the rice points leaderboards.`)
     ,
     async execute(interaction,client){
