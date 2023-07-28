@@ -25,7 +25,6 @@ module.exports = {
         });
 
         const leaderboardUser = leaderboards.find(item => item.userID == interaction.member.user.id);
-        console.log(leaderboardUser);
         await interaction.reply({content: `You are positioned at **#${leaderboardUser.number} with ${leaderboardUser.points} rice points!**`});
     }
 }
