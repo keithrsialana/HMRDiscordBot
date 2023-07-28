@@ -1,4 +1,4 @@
-const { SlashCommandBuilder } = require("discord.js");
+const { PermissionFlagsBits, SlashCommandBuilder } = require("discord.js");
 const economyHandler = require('../../methods/economyHandler');
 
 module.exports = {
@@ -11,13 +11,16 @@ module.exports = {
         var eData = economyHandler.getData();
         if (eData){
             try{
-                eData.economyData.foreach(user => {
-                    user.xp = user.balance;
-                    economyHandler.saveEconData();
+                eData.economyData.forEach(item => {
+                    if (item.balance != null){
+                        item.xp = item.balance;
+                    }
                 });
-                await interaction.reply("Points transfered to XP");
+                economyHandler.saveEconData();
+                console.log("Points transferred to XP");
+                await interaction.reply("Points transferred to XP");
             }catch(err){
-                console.log("Could not transfer points to xp");
+                console.log(`Could not transfer points to xp\n ${err}`);
                 await interaction.reply("Something went wrong, check the console.");
             }
         }

@@ -1,6 +1,6 @@
 const { Events } = require('discord.js');
 const econHandler = require('../../methods/economyHandler.js');
-const {PER_SECOND_POINTS} = require('../../data/economy/econSettings.json');
+const {calculatePoints} = require('../../methods/checkVCStartup');
 
 module.exports = {
 	name: Events.VoiceStateUpdate,
@@ -51,33 +51,10 @@ module.exports = {
             if (econUser.voiceJoinedAt == null)
                 return;
             else{
-                const timeDiff = now - econUser.voiceJoinedAt;
-                
-                if (timeDiff < 0){
-                    econUser.voiceJoinedAt = null;
-                    econHandler.saveEconData();
-                    return;
-                }
+                const pointsToAdd = calculatePoints(econUser, now);
 
-                if(econUser.voiceJoinedAt)
-                    econUser.voiceJoinedAt = null;
-                    econHandler.saveEconData();
-                const seconds = timeDiff / 1000;
-
-                if (seconds <= 0){
-                    econUser.voiceJoinedAt = null;
-                    econHandler.saveEconData();
-                    return;
-                }
-                const pointsToAdd = Math.trunc(seconds * PER_SECOND_POINTS);
-
-                if(pointsToAdd <= 0){
-                    console.log(`voiceStateUpdate: ${econUser.id} only generated ${pointsToAdd} points`);
-                    econUser.voiceJoinedAt = null;
-                    econHandler.saveEconData();
-                    return;
-                }
-                econHandler.addPoints(oldMember.id, pointsToAdd);
+                if (pointsToAdd && pointsToAdd > 0)
+                    econHandler.addPoints(oldMember.id, pointsToAdd);
                 console.log(`voiceStateUpdate: ${econUser.id} now has ${econUser.balance}`);
                 return;
             }
@@ -90,5 +67,9 @@ module.exports = {
         else{
             console.log(`User ${oldMember.id} has connected to a Voice Channel`);
         }
+    },
+    
+    calculatePoints(){
+        
     }
 };

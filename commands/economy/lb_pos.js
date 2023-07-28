@@ -19,14 +19,13 @@ module.exports = {
             leaderboards.push({
                 userID: member.id,
                 number: i+1,
-                name: member?(member.nickname?member.nickname:member.user.username)+"#"+member.user.discriminator:"Unknown",
                 points: pointsData[i].balance.toLocaleString("en-US")
             });
             i++;
         });
 
-        const leaderboardUser = leaderboards.find(item => item.id == interaction.member.user.id);
-        const lbUser_index = leaderboards.findIndex(leaderboardUser);
-        await interaction.reply({content: `You are positioned at **${leaderboardUser.number} with ${leaderboardUser.points} rice points!**`});
+        const leaderboardUser = leaderboards.find(item => item.userID == interaction.member.user.id);
+        console.log(leaderboardUser);
+        await interaction.reply({content: `You are positioned at **#${leaderboardUser.number} with ${leaderboardUser.points} rice points!**`});
     }
 }
