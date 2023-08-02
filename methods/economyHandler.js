@@ -55,14 +55,15 @@ module.exports = {
         if (!this.economy)
             this.economy = eData;
         try {
-            const user = findUser(userID)
+            const user = this.findUser(userID);
             if (user){
                 // 0.111358851 * x^0.5
                 var result = 0.111358851 * (user.xp ** 0.5);
+                console.log(result);
                 return Math.floor(result);
             }
-        }catch{
-            console.log(`Couldn't calculate the user's Level`);
+        }catch(err){
+            console.log(`Couldn't calculate the user's Level: ${err}`);
         }    
     },
     findUser(userID) {
