@@ -1,6 +1,4 @@
 config.json
-data/economy/economy.json
-data/economy/items.json
-data/economy/econSettings.json
+data/economy/*.json
 .vscode
 .vs
