@@ -28,6 +28,7 @@ module.exports = {
                 if(econUser.lastDaily == null || Date.parse(econUser.lastDaily) < Date.parse(today)){
                     econUser.lastDaily = today;
                     econHandler.addPoints(econUser.id, DAILY_POINTS);
+                    econHandler.saveEconData();
                     if(!interaction.channel.id == GENERAL_CHAT_ID)
                         await interaction.reply({content: `You claimed your ${DAILY_POINTS.toLocaleString("en-US")} points! Run this command again tomorrow for ${DAILY_POINTS.toLocaleString("en-US")} more!`});
                     else

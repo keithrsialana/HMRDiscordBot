@@ -25,6 +25,7 @@ module.exports = {
         // Adds the user to the database if they don't exist yet
         if (!econUser){
             econHandler.addUser(user);
+            econHandler.saveEconData();
             econUser = econHandler.findUser(oldMember.id);
         }
 
@@ -55,6 +56,7 @@ module.exports = {
 
                 if (pointsToAdd && pointsToAdd > 0)
                     econHandler.addPoints(oldMember.id, pointsToAdd);
+                    econHandler.saveEconData();
                 console.log(`voiceStateUpdate: ${econUser.id} now has ${econUser.balance}`);
                 return;
             }

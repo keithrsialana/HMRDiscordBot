@@ -28,6 +28,7 @@ module.exports = {
             econUser = econHandler.economy.economyData.find(x => x.id == user.id);
             if (econUser) {
                 econHandler.subtractPoints(econUser.id, interaction.options.get("points").value);
+                econHandler.saveEconData();
                 await interaction.reply({ content: "User points changed", ephemeral:true });
             }
             else {

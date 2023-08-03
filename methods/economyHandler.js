@@ -3,12 +3,16 @@ const util = require('util');
 const writeFile = util.promisify(fs.writeFile);
 const economyPath = '../data/economy/economy.json'; // Confirmed path
 const itemsPath = '../data/economy/items.json'; // Confirmed path
+const aCooldownsPath = '../data/economy/attack_cooldowns.json' // Confirmed path
+const acData = require(aCooldownsPath);
 const eData = require(economyPath);
 const iData = require(itemsPath);
+const {attacks} = require('../config.json');
 
 module.exports = {
     economy: eData,
     items: iData,
+    attack_cooldowns: acData,
 
     // DATABASE ----------------------------
     getData() {
@@ -16,6 +20,9 @@ module.exports = {
     },
     getItems() {
         return iData;
+    },
+    getCooldowns() {
+        return acData;
     },
     async saveEconData() {
         try {
@@ -37,6 +44,16 @@ module.exports = {
             console.log('Error saving economy data:', error);
         }
     },
+    async saveAttackCooldownsData() {
+        try {
+          await writeFile('./data/economy/attack_cooldowns.json', JSON.stringify(this.attack_cooldowns), (err) => {
+            if (err) throw err;
+            console.log('Data written to file');
+          });
+        } catch (error) {
+          console.log('Error saving attack cooldowns data:', error);
+        }
+    },
     addItemToShop(id, name, price, maxQuantity){
         const itemObject = {
             id: id,
@@ -50,7 +67,6 @@ module.exports = {
     },
 
     // USERS -------------------------------
-    //TODO:
     calculateLevel(userID){
         if (!this.economy)
             this.economy = eData;
@@ -59,7 +75,6 @@ module.exports = {
             if (user){
                 // 0.111358851 * x^0.5
                 var result = 0.111358851 * (user.xp ** 0.5);
-                console.log(result);
                 return Math.floor(result);
             }
         }catch(err){
@@ -104,7 +119,6 @@ module.exports = {
             this.economy = eData;
         try{
             this.economy.economyData.push(u);
-            this.saveEconData();
         }catch{
             console.log("Could not add new user");
         }
@@ -112,21 +126,83 @@ module.exports = {
     setPoints(userID, points) {
         let eUser = this.findUser(userID);
         eUser.balance = points;
-        this.saveEconData();
     },
     addPoints(userID, points) {
         let eUser = this.findUser(userID);
         eUser.xp += points;
         eUser.balance += points;
-        this.saveEconData();
     },
     subtractPoints(userID, points) {
         let eUser = this.findUser(userID);
         eUser.balance -= points;
-        this.saveEconData();
     },
     getInventory(userID) {
         let eUser = this.findUser(userID);
         return eUser.boughtItems;
-    }
+    },
+
+    // Economy Attacks ---------------------
+    // TODO:
+    checkUserCooldowns(userID){
+        try{
+            if (!this.attack_cooldowns)
+                this.attack_cooldowns = acData;
+
+            const usrObj = this.attack_cooldowns.find(x => x.id == userID);
+
+            return usrObj;
+        }catch(err){
+            console.log(`There was a problem with checking User Cooldown: ${err}`);
+        }
+    },
+    addAttackUser(userID){
+        const userObj = {
+            id: userID,
+            cooldowns: []
+        }
+        if (!this.attack_cooldowns.find(user => user.id == userID))
+            this.attack_cooldowns.push(userObj);
+        else
+            console.log(`user ${userID} already exists in the Attack Cooldowns DB`);
+    },
+    removeAttackUser(userID){
+        try{
+            const objToDelete = this.attack_cooldowns.find(obj => obj.id == userID);
+            const newArray = this.attack_cooldowns.filter(user => user !== objToDelete);
+
+            this.attack_cooldowns = newArray;
+        }catch(err){
+            console.log(`There was a problem trying to remove an attack user: ${err}`);
+        }
+    },
+    addUserCooldown(userID, attackName, severity){
+        const now = Date.now();
+        try{
+            const attackUser = this.attack_cooldowns.find(obj => obj.id == userID);
+            const cooldownTime = attacks.cooldown_levels.find(obj => obj.name == severity);
+            const endDate = now + cooldownTime.time;
+    
+            const cooldownObj = {
+                name: attackName,
+                launch: now,
+                end: endDate
+            }
+
+            attackUser.cooldowns.push(cooldownObj);
+        }catch(err){
+            console.log(`There was a problem: ${err}`);
+        }
+    },
+    removeUserCooldown(userID, attackName){
+        try{
+            const user = this.attack_cooldowns.find(user => user.id == userID);
+            const cooldownObj = user.cooldowns.find(obj => obj.name == attackName);
+
+            const newArray = user.cooldowns.filter(attack => attack !== cooldownObj);
+
+            user.cooldowns = newArray;
+        }catch(err){
+            console.log(`There was a problem with trying to remove a user cooldown: ${err}`);
+        }
+    },
 }

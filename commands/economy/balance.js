@@ -25,6 +25,7 @@ module.exports = {
         let econUser = economyHandler.findUser(user.user.id);
         if (!econUser){
             economyHandler.addUser(user.user);
+            economyHandler.saveEconData();
             econUser = economyHandler.findUser(user.user.id);
             if (!econUser)
                 return;

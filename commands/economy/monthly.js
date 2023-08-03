@@ -29,6 +29,7 @@ module.exports = {
                 if (econUser.lastMonthly == null || Date.now() >= nextMonthly) {
                     econUser.lastMonthly = today;
                     econHandler.addPoints(econUser.id, MONTHLY_POINTS);
+                    econHandler.saveEconData();
                     console.log(`monthly: ${econUser.id} now has ${econUser.balance}`);
                     await interaction.reply({ content: `You claimed your monthly ${MONTHLY_POINTS.toLocaleString("en-US")} points! Run this command again next month for ${MONTHLY_POINTS.toLocaleString("en-US")} more!` });
                 } else {

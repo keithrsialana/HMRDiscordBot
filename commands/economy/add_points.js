@@ -29,6 +29,7 @@ module.exports = {
             if (econUser) {
                 econHandler.addPoints(econUser.id, interaction.options.get("points").value);
                 console.log(`add_points: ${econUser.id} now has ${econUser.balance}`);
+                econHandler.saveEconData();
                 await interaction.reply({ content: "User points changed", ephemeral:true });
             }
             else {

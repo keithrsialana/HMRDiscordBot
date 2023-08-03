@@ -48,6 +48,7 @@ module.exports = {
                     item.voiceJoinedAt = null;
                     if (pointsToAdd && pointsToAdd > 0){
                         economyHandler.addPoints(item.id, pointsToAdd);
+                        economyHandler.saveEconData();
                     }
                 }
             }

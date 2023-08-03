@@ -34,6 +34,7 @@ module.exports = {
                 if(dbInteractionUser.balance >= points){
                     econHandler.subtractPoints(dbInteractionUser.id,points);
                     econHandler.addPoints(dbMentionedUser.id, points);
+                    econHandler.saveEconData();
                     // await interaction.reply({content:`You have given ${mentioned.nickname ? mentioned.nickname : mentioned.username} ${points} rice points!`, ephemeral:false});
                     await interaction.reply({content:`You have given ${mentioned} ${points} rice points!`, ephemeral:false});
                 }
