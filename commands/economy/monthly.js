@@ -24,7 +24,6 @@ module.exports = {
 
             econUser = econHandler.economy.economyData.find(x => x.id == user.id);
             if (econUser) {
-                console.log(`${Date.parse(econUser.lastMonthly)} ${Date.parse(econUser.lastMonthly) + 2629800000}`);
                 const nextMonthly =  new Date(Date.parse(econUser.lastMonthly) + 2629800000);
                 // If there is no record of monthly date, OR if the lastMonthly date IS MORE THAN lastMonthly + a month in miliseconds
                 if (econUser.lastMonthly == null || Date.now() >= nextMonthly) {
