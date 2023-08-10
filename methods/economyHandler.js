@@ -31,7 +31,7 @@ module.exports = {
             console.log('Data written to file');
           });
         } catch (error) {
-          console.log('Error saving economy data:', error);
+          console.log('[ERROR] Error saving economy data:', error);
         }
     },
     async saveItemData() {
@@ -41,7 +41,7 @@ module.exports = {
                 console.log('Data written to file');
               });
         }catch(error) {
-            console.log('Error saving economy data:', error);
+            console.log('[ERROR] Error saving economy data:', error);
         }
     },
     async saveAttackCooldownsData() {
@@ -51,7 +51,7 @@ module.exports = {
             console.log('Data written to file');
           });
         } catch (error) {
-          console.log('Error saving attack cooldowns data:', error);
+          console.log('[ERROR] Error saving attack cooldowns data:', error);
         }
     },
     addItemToShop(id, name, price, maxQuantity){
@@ -78,7 +78,7 @@ module.exports = {
                 return Math.floor(result);
             }
         }catch(err){
-            console.log(`Couldn't calculate the user's Level: ${err}`);
+            console.log(`[ERROR] Couldn't calculate the user's Level: ${err}`);
         }    
     },
     findUser(userID) {
@@ -90,7 +90,7 @@ module.exports = {
                 return user;
             }
         }catch{
-            console.log(`Could not find User Data`);
+            console.log(`[ERROR] Could not find User Data`);
         }
     },
     addUser(userObject) {
@@ -120,7 +120,7 @@ module.exports = {
         try{
             this.economy.economyData.push(u);
         }catch{
-            console.log("Could not add new user");
+            console.log("[ERROR] Could not add new user");
         }
     },
     setPoints(userID, points) {
@@ -152,7 +152,7 @@ module.exports = {
 
             return usrObj;
         }catch(err){
-            console.log(`There was a problem with checking User Cooldown: ${err}`);
+            console.log(`[ERROR] There was a problem with checking User Cooldown: ${err}`);
         }
     },
     addAttackUser(userID){
@@ -163,7 +163,7 @@ module.exports = {
         if (!this.attack_cooldowns.find(user => user.id == userID))
             this.attack_cooldowns.push(userObj);
         else
-            console.log(`user ${userID} already exists in the Attack Cooldowns DB`);
+            console.log(`[ERROR] user ${userID} already exists in the Attack Cooldowns DB`);
     },
     removeAttackUser(userID){
         try{
@@ -172,7 +172,7 @@ module.exports = {
 
             this.attack_cooldowns = newArray;
         }catch(err){
-            console.log(`There was a problem trying to remove an attack user: ${err}`);
+            console.log(`[ERROR] There was a problem trying to remove an attack user: ${err}`);
         }
     },
     addUserCooldown(userID, attackName, severity){
@@ -190,7 +190,7 @@ module.exports = {
 
             attackUser.cooldowns.push(cooldownObj);
         }catch(err){
-            console.log(`There was a problem: ${err}`);
+            console.log(`[ERROR] There was a problem: ${err}`);
         }
     },
     removeUserCooldown(userID, attackName){
@@ -202,7 +202,7 @@ module.exports = {
 
             user.cooldowns = newArray;
         }catch(err){
-            console.log(`There was a problem with trying to remove a user cooldown: ${err}`);
+            console.log(`[ERROR] There was a problem with trying to remove a user cooldown: ${err}`);
         }
     },
 }

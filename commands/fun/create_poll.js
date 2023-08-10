@@ -49,7 +49,7 @@ module.exports = {
             option5 = interaction.options.get('option5')? interaction.options.get('option5').value : null;
         }
         catch {
-            console.log(console.error);
+            console.log(`[ERROR] ` + console.error);
         }
 
         // Used to find how many options were created
@@ -82,7 +82,7 @@ module.exports = {
             try{
                 await interaction.reply({content: "Poll was created", ephemeral: true});
             }catch{
-                console.log("Reply was not sent.");
+                console.log("[ERROR] Reply was not sent.");
             }
             const message = await interaction.channel.send({embeds: [embed]});
             for (const option in pollOptions){
@@ -91,7 +91,7 @@ module.exports = {
             }
         }
         catch{
-            console.log(console.error);
+            console.log(`[ERROR] ` + console.error);
         }
     }
 };

@@ -38,7 +38,7 @@ module.exports = {
                 }
             }
             else{
-                console.log("Could not find user to add daily points");
+                console.log("[ERROR] Could not find user to add daily points");
             }
         }catch (error){
             await interaction.reply({content: "There was a problem with adding your points: " + error, ephemeral: true});

@@ -36,7 +36,7 @@ module.exports = {
 
             await interaction.reply(response.data.data[rNumber].url);
           }catch(err){
-            console.log("Something went wrong");
+            console.log("[ERROR] Something went wrong in gif.js");
             console.log(err);
             await interaction.reply({content:"Couldn't find a gif with that search", ephemeral:true});
           }

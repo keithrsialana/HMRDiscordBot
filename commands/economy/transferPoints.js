@@ -20,7 +20,7 @@ module.exports = {
                 console.log("Points transferred to XP");
                 await interaction.reply("Points transferred to XP");
             }catch(err){
-                console.log(`Could not transfer points to xp\n ${err}`);
+                console.log(`[ERROR] Could not transfer points to xp\n ${err}`);
                 await interaction.reply("Something went wrong, check the console.");
             }
         }

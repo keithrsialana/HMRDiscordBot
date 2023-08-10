@@ -11,7 +11,7 @@ module.exports = {
             else
                 return user;
         }catch(err){
-            console.log(`guildHandlers.js ERROR:\n${err}`);
+            console.log(`[ERROR] Something went wrong in findGuildMember.js \n${err}`);
         }
     }
 }

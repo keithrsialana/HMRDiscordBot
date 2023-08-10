@@ -19,7 +19,7 @@ module.exports = {
         try{
             econUser = econHandler.findUser(oldMember.id);
         }catch(err){
-            console.log(`Something went wrong in voiceStateUpdate.js\n${err}`);
+            console.log(`[ERROR] Something went wrong in voiceStateUpdate.js\n${err}`);
         }
 
         // Adds the user to the database if they don't exist yet
@@ -38,7 +38,7 @@ module.exports = {
                 econHandler.saveEconData();
                 return;
             }catch(err){
-                console.log("Could not update user's voiceJoinedAt attribute");
+                console.log("[ERROR] Could not update user's voiceJoinedAt attribute");
             }
         }
 
@@ -63,7 +63,7 @@ module.exports = {
 
             
             }catch(err){
-                console.log("Could not update user's voiceJoinedAt attribute");
+                console.log("[ERROR] Could not update user's voiceJoinedAt attribute");
             }
         }
         else{

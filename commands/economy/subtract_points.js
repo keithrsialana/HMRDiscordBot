@@ -32,7 +32,7 @@ module.exports = {
                 await interaction.reply({ content: "User points changed", ephemeral:true });
             }
             else {
-                console.log("Could not find user");
+                console.log("[ERROR] Could not find user");
             }
         } catch (error) {
             await interaction.reply({ content: "There was a problem with changing user points: " + error, ephemeral: true });

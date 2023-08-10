@@ -20,7 +20,7 @@ module.exports = {
             try{
                 const member = interaction.guild.members.cache.get(pointsData[i].id.toString());
                 if (!member){
-                    console.log(`Could not find user with id ${pointsData[i].id}`);
+                    console.log(`[ERROR] Could not find user with id ${pointsData[i].id}`);
                 }
                 top100.push({
                     number: i+1,
@@ -29,7 +29,7 @@ module.exports = {
                 }
             );
             }catch(err){
-                console.log(`ERROR: leaderboards.js error: `);
+                console.log(`[ERROR] leaderboards.js error: `);
                 console.log(err);
                 break;
             }

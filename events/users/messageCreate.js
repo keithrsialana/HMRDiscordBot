@@ -29,7 +29,7 @@ module.exports = {
             econHandler.saveEconData();
             console.log(`messageCreate: ${econUser.id} now has ${econUser.balance}`);
         }catch(err){
-            console.log("ERROR: messageCreate error");
+            console.log("[ERROR] messageCreate error");
             console.log(err);
         }
 

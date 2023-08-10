@@ -46,7 +46,7 @@ module.exports = {
                 await interaction.reply({content:`There was a problem with trying to find a user in the database`, ephemeral:true});
             }
         }catch(err){
-            console.log(err);
+            console.log(`[ERROR] ${err}`);
         }
     }
 }

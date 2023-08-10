@@ -19,7 +19,7 @@ module.exports = {
             else
                 await interaction.reply(translated);
         }catch(err){
-            console.log(`There was a problem with pirate.js`);
+            console.log(`[ERROR] There was a problem with pirate.js`);
             console.log(err);
         }
     }

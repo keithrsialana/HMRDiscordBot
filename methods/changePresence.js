@@ -18,7 +18,7 @@ module.exports = {
             client.user.setPresence(data);
             console.log(`Bot presence was changed to: "${message}"`);
         }catch(err){
-            console.log(`Could not update presence: ${err}`);
+            console.log(`[ERROR] Could not update presence: ${err}`);
         }
     },
     remove(client){
@@ -30,7 +30,7 @@ module.exports = {
             client.user.setPresence(data);
             console.log("Bot presence was removed.");
         }catch(err){
-            console.log(`Could not update presence: ${err}`);
+            console.log(`[ERROR] Could not update presence: ${err}`);
         }
     }
 }
