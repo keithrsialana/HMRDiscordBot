@@ -65,9 +65,9 @@ module.exports = {
                 console.log("[ERROR] Could not update user's voiceJoinedAt attribute");
             }
         }
-        else{
-            console.log(`User ${oldMember.id} has connected to a Voice Channel`);
-        }
+        // else{
+        //     console.log(`User ${oldMember.id} has connected to a Voice Channel`);
+        // }
     },
     
     calculatePoints(){
