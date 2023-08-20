@@ -17,7 +17,6 @@ module.exports = {
                     }
                 });
                 economyHandler.saveEconData();
-                console.log("Points transferred to XP");
                 await interaction.reply("Points transferred to XP");
             }catch(err){
                 console.log(`[ERROR] Could not transfer points to xp\n ${err}`);

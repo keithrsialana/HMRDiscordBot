@@ -57,7 +57,6 @@ module.exports = {
                 if (pointsToAdd && pointsToAdd > 0)
                     econHandler.addPoints(oldMember.id, pointsToAdd);
                     econHandler.saveEconData();
-                console.log(`voiceStateUpdate: ${econUser.id} now has ${econUser.balance}`);
                 return;
             }
 

@@ -27,7 +27,6 @@ module.exports = {
 
             econHandler.addPoints(member.user.id, PER_MESSAGE_POINTS);
             econHandler.saveEconData();
-            console.log(`messageCreate: ${econUser.id} now has ${econUser.balance}`);
         }catch(err){
             console.log("[ERROR] messageCreate error");
             console.log(err);

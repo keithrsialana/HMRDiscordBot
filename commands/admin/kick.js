@@ -16,7 +16,6 @@ module.exports = {
         )
     .setDefaultMemberPermissions(PermissionFlagsBits.KickMembers),
     async execute(interaction,client){
-        console.log(interaction.options.get("user").member);
         const user = interaction.options.get("user").member;
         const reason = interaction.options.get('reason').value
         user.kick(interaction.options.get('reason').value)
