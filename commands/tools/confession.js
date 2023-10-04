@@ -1,5 +1,5 @@
 const { EmbedBuilder } = require('@discordjs/builders');
-const { SlashCommandBuilder, GuildChannel } = require('discord.js');
+const { SlashCommandBuilder, GuildForumThreadManager } = require('discord.js');
 
 module.exports = {
     data: new SlashCommandBuilder()
@@ -12,6 +12,27 @@ module.exports = {
         .setRequired(true)
     )
     ,
+
+    // TODO: To Create a Forum Thread confession instead of using a channel.
+    // - How do I create a confession? Do I need another channel to use the command?
+    // - How do I get the Forum Channel ID?
+    // - How do I set the ThreadManager to work on a specific Channel ID?
+    
+    // async execute(interaction){
+    //     var forum = new GuildForumThreadManager();
+
+    //     forum.threads
+    //         .create({
+    //             name: 'Food Talk',
+    //             autoArchiveDuration: ThreadAutoArchiveDuration.OneHour,
+    //             message: {
+    //             content: 'Discuss your favorite food!',
+    //             },
+    //             reason: 'Needed a separate thread for food',
+    //         })
+    //         .then(threadChannel => console.log(threadChannel))
+    //         .catch(console.error);
+    // },
 
     async execute(interaction, client) {
         // get the user input from options

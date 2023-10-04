@@ -4,32 +4,37 @@ const {PER_SECOND_POINTS} = require('../data/economy/econSettings.json');
 
 module.exports = {
     calculatePoints(eUser, now){
-        const timeDiff = now - eUser.voiceJoinedAt;
+        try{
+            const timeDiff = now - eUser.voiceJoinedAt;
 
-        if (timeDiff < 0){
-            economyHandler.saveEconData();
-            return;
+            if (timeDiff < 0){
+                economyHandler.saveEconData();
+                return 0;
+            }
+    
+            if (eUser.voiceJoinedAt){
+                eUser.voiceJoinedAt = null;
+                economyHandler.saveEconData();
+            }
+            const seconds = timeDiff / 1000;
+    
+            if (seconds <= 0){
+                eUser.voiceJoinedAt = null;
+                economyHandler.saveEconData();
+                return 0;
+            }
+            const pointsToAdd = Math.trunc(seconds * PER_SECOND_POINTS);
+    
+            if (pointsToAdd <= 0){
+                eUser.voiceJoinedAt = null;
+                economyHandler.saveEconData();
+                return 0;
+            }
+        
+            return pointsToAdd;
+        }catch (err){
+            console.log(`[ERROR] There was a problem in calculatePoints(): ${err}`);
         }
-
-        if (eUser.voiceJoinedAt){
-            eUser.voiceJoinedAt = null;
-            economyHandler.saveEconData();
-        }
-        const seconds = timeDiff / 1000;
-
-        if (seconds <= 0){
-            eUser.voiceJoinedAt = null;
-            economyHandler.saveEconData();
-            return;
-        }
-        const pointsToAdd = Math.trunc(seconds * PER_SECOND_POINTS);
-
-        if (pointsToAdd <= 0){
-            econuser.voiceJoinedAt = null;
-            economyHandler.saveEconData();
-            return;
-        }
-        return pointsToAdd;
     },
 
     async check(client) {

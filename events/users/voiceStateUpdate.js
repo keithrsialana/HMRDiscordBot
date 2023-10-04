@@ -38,7 +38,7 @@ module.exports = {
                 econHandler.saveEconData();
                 return;
             }catch(err){
-                console.log("[ERROR] Could not update user's voiceJoinedAt attribute");
+                console.log(`[ERROR] Could not update user's voiceJoinedAt attribute: ${err}`);
             }
         }
 
@@ -58,19 +58,14 @@ module.exports = {
                     econHandler.addPoints(oldMember.id, pointsToAdd);
                     econHandler.saveEconData();
                 return;
-            }
-
-            
+            }            
             }catch(err){
-                console.log("[ERROR] Could not update user's voiceJoinedAt attribute");
+                console.log(`[ERROR] Could not update (${econUser.id}) user's voiceJoinedAt attribute.: ${err}`);
+                // console.log("[ERROR] Could not update user's voiceJoinedAt attribute");
             }
         }
         // else{
         //     console.log(`User ${oldMember.id} has connected to a Voice Channel`);
         // }
-    },
-    
-    calculatePoints(){
-        
     }
 };
