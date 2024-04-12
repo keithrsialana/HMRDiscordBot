@@ -1,4 +1,4 @@
 config.json
-data/economy/*.json
 .vscode
 .vs
+chatlogs/*.log

@@ -1,0 +1,40 @@
+{
+    "itemsData": [
+        {
+            "id": 0,
+            "name": "Color Change",
+            "price": 10000,
+            "maxQuantity": 1
+        },
+        {
+            "id": 1,
+            "name": "Add Server Emoji",
+            "price": 20000,
+            "maxQuantity": 10
+        },
+        {
+            "id": 2,
+            "name": "Add Stream Account to bot",
+            "price": 50000,
+            "maxQuantity": 10
+        },
+        {
+            "id": 3,
+            "name": "Embedded Links",
+            "price": 10000,
+            "maxQuantity": 1
+        },
+        {
+            "id": 4,
+            "name": "Add Server Sticker",
+            "price": 20000,
+            "maxQuantity": 10
+        },
+        {
+            "id": 5,
+            "name": "Add Soundboard Sound",
+            "price": 40000,
+            "maxQuantity": 10
+        }
+    ]
+}

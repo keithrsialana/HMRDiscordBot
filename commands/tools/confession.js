@@ -42,11 +42,13 @@ module.exports = {
         .setColor(0x9C59B6)
         .setTimestamp(Date.now());
         
-        if (interaction.channel.id == 485024625437310978){
+        if (interaction.channel.id == 1228222525109043211){
+            const d = Date();
+            console.log(`${interaction.member.user.displayName}(${interaction.member.user.username}) created a confession at ${d.toLocaleString("en-US")}`);
             await interaction.reply({content: "Your confession was sent!", ephemeral:true});
             await interaction.channel.send({embeds:[embed], ephemeral: false});
         }else{
-            const confessionChannel = interaction.guild.channels.cache.get('485024625437310978').toString();
+            const confessionChannel = interaction.guild.channels.cache.get('1228222525109043211').toString();
             await interaction.reply({content: `You're not in the right channel! Head over to ${confessionChannel} to send a confession.`, ephemeral:true});
         }
     },
