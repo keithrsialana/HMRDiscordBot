@@ -139,6 +139,7 @@ module.exports = {
         encodedParams.set('source', interaction.options.get('from').value);
         encodedParams.set('target', interaction.options.get('to').value);
         encodedParams.set('q', interaction.options.get('sentence').value);
+        encodedParams.set('format','text');
 
         const options = {
             method: 'POST',
