@@ -2,3 +2,4 @@ config.json
 .vscode
 .vs
 chatlogs/*.log
+data/economy/economy.json
