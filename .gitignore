@@ -1,5 +1,5 @@
 config.json
 .vscode
 .vs
-chatlogs/*.log
+chatlogs/*
 data/economy/economy.json
