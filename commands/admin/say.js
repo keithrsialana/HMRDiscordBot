@@ -12,9 +12,19 @@ module.exports = {
     .setDefaultMemberPermissions(PermissionFlagsBits.Administrator),
     async execute(interaction,client){
         const messageContent = interaction.options.get("content").value;
-        await interaction.reply({
-            content: `${messageContent}`,
-            ephemeral: false
-        });
+        try{
+            await interaction.channel.send({
+                content: `${messageContent}`
+            });
+            await interaction.reply({
+                content: `Your message has been sent`,
+                ephemeral: true
+            });
+        }catch(err){
+            await interaction.reply({
+                content: `There was a problem with sending your message ${err}`,
+                ephemeral: true
+            })
+        }
     }
 }
