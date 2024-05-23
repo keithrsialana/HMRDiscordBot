@@ -10,8 +10,10 @@ module.exports = {
         .setDescription('write what you want the bot to say')
         )
     .setDefaultMemberPermissions(PermissionFlagsBits.Administrator),
+    
     async execute(interaction,client){
-        const messageContent = interaction.options.get("content").value;
+        console.log(data);
+        const messageContent = interaction.options.getString("content");
         try{
             await interaction.channel.send({
                 content: `${messageContent}`
