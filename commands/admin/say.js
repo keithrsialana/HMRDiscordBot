@@ -12,7 +12,6 @@ module.exports = {
     .setDefaultMemberPermissions(PermissionFlagsBits.Administrator),
     
     async execute(interaction,client){
-        console.log(data);
         const messageContent = interaction.options.getString("content");
         try{
             await interaction.channel.send({
