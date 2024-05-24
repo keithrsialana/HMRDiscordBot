@@ -1,4 +1,5 @@
 const {PermissionFlagsBits, SlashCommandBuilder} = require('discord.js');
+const {logChannelID} = require('../../config.json');
 
 module.exports = {
     data: new SlashCommandBuilder()
@@ -20,8 +21,12 @@ module.exports = {
         const user = interaction.options.get("user").member;
         const reason = interaction.options.get('reason').value
         user.ban(interaction.options.get('reason').value)
+        await interaction.guild.channels.cache.get(logChannelID).send({
+            content:`${user.user.username} was banned. Reason: ${reason}`,
+            ephemeral: false
+        });
         await interaction.reply({
-            content: `${user.user.username}#${user.user.discriminator} was banned. Reason: ${reason}`,
+            content: `${user.user.username} was banned. Reason: ${reason}`,
             ephemeral: true
         });
     }

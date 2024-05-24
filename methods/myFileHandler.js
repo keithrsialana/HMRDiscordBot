@@ -1,4 +1,5 @@
 const fs = require('fs');
+const {resolve} = require('path');
 
 module.exports = {
     getDate: () => {
@@ -56,7 +57,13 @@ module.exports = {
         return (fs.readFileSync(fileName));
     },
     save: (fileName, data) => {
-        fs.writeFileSync(fileName, data);
-        fs.closeSync()
+        try{
+            fs.writeFileSync(fileName, data);
+        }catch(err){
+            console.log(`There was a problem with saving: ${err.message}`);
+        }
+    },
+    getPath: (fileName) => {
+        return resolve(fileName).toString();
     }
 }
