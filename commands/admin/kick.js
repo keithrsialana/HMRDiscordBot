@@ -1,4 +1,6 @@
 const {PermissionFlagsBits, SlashCommandBuilder} = require('discord.js');
+const {logChannelID} = require('../../config.json');
+
 module.exports = {
     data: new SlashCommandBuilder()
     .setName('kick')
@@ -18,9 +20,13 @@ module.exports = {
     async execute(interaction,client){
         const user = interaction.options.get("user").member;
         const reason = interaction.options.get('reason').value
-        user.kick(interaction.options.get('reason').value)
+        user.kick(interaction.options.get('reason').value);
+        await interaction.guild.channels.cache.get(logChannelID).send({
+            content:`${user.user.username} was kicked. Reason: ${reason}`,
+            ephemeral: false
+        });
         await interaction.reply({
-            content: `${user.user.username}#${user.user.discriminator} was kicked. Reason: ${reason}`,
+            content: `${user.user.username} was kicked. Reason: ${reason}`,
             ephemeral: true
         });
     }

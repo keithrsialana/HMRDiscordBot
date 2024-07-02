@@ -47,16 +47,21 @@ module.exports = {
 
     async logMessage(channel, user, message) {
         try {
+            const realDate = fileHandler.getRealDate();
             const currentDate = fileHandler.getDate();
-            const fileName = "./chatlogs/" + currentDate + '.log';
-            let content = ""
-            if (fileHandler.exists(fileName) == true) {
-                content = fileHandler.load(fileName);
+            const filePath = `./chatlogs/${realDate.year}/${realDate.month}-${realDate.year}/`;
+            const fileName = filePath + currentDate + '.log';
+            if (fileHandler.pathExists(filePath))
+            {
+                let content = ""
+                if (fileHandler.fileExists(fileName) == true) {
+                    content = fileHandler.load(fileName);
+                }
+                content = content + `[${fileHandler.getTime()}] : [${user.username}] : [${channel.name}] : ${message} \n`;
+                fileHandler.save(fileName, content);
             }
-            content = content + `[${fileHandler.getTime()}] : [${user.username}] : [${channel.name}] : ${message} \n`;
-            fileHandler.save(fileName, content);
         } catch (err){
-            // console.log(`[ERROR] There was a problem logging a message: ${err}`);
+            //console.log(`[ERROR] There was a problem logging a message: ${err}`);
             return;
         }
     },
