@@ -1,27 +1,29 @@
 {
-  "dependencies": {
-    "axios": "^1.4.0",
-    "discord.js": "^14.9.0",
-    "openai": "^3.2.1",
-    "pirate-speak": "^1.0.1",
-    "request": "^2.88.2"
-  },
   "name": "hmrdiscordbot",
-  "description": "Creating a chatbot for a the social platform 'Discord'",
   "version": "1.0.0",
+  "description": "Creating a chatbot for a the social platform 'Discord'",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Ricekeet/HMRDiscordBot.git"
+    "url": "git+https://github.com/keithrsialana/HMRDiscordBot.git"
   },
-  "keywords": [],
-  "author": "Ricekeet",
-  "license": "ISC",
+  "author": "Keith Sialana",
+  "license": "MIT",
   "bugs": {
-    "url": "https://github.com/Ricekeet/HMRDiscordBot/issues"
+    "url": "https://github.com/keithrsialana/HMRDiscordBot/issues"
   },
-  "homepage": "https://github.com/Ricekeet/HMRDiscordBot#readme"
+  "homepage": "https://github.com/keithrsialana/HMRDiscordBot#readme",
+  "dependencies": {
+    "axios": "^1.7.9",
+    "discord.js": "^14.17.3",
+    "openai": "^4.77.3",
+    "pirate-speak": "^1.0.1",
+    "request": "^2.88.2"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.9"
+  }
 }
