@@ -4,7 +4,8 @@
   "description": "Creating a chatbot for a the social platform 'Discord'",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node .",
+    "dev": "nodemon . --ignore ./config.json --ignore ./deploy-commands.js --ignore ./data/economy/economy.json --ignore ./data/economy/items.json --ignore ./data/economy/econSettings.json"
   },
   "repository": {
     "type": "git",

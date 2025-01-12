@@ -1,0 +1,43 @@
+{
+    "token": "",
+    "clientId": "",
+    "rapidAPI_key": "",
+    "giphy_key": "",
+    "guildID": "",
+    "testGuildID": "",
+    "msgLogger": false,
+    "presence": {
+      "status": "online",
+      "afk": false,
+      "message": "// something cute 🥺"
+    },
+    "attacks": {
+      "cooldown_levels": [
+        {
+          "name": "MINI",
+          "time": 3600000
+        },
+        {
+          "name": "NORMAL",
+          "time": 86400000
+        },
+        {
+          "name": "HEAVY",
+          "time": 345600000
+        },
+        {
+          "name": "MASSIVE",
+          "time": 1209600033
+        },
+        {
+          "name": "COLOSSAL",
+          "time": 2629800000
+        },
+        {
+          "name": "CATACLYSMIC",
+          "time": 31557600000
+        }
+      ]
+    },
+    "test": false
+  }
