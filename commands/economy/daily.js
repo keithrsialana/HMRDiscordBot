@@ -1,11 +1,12 @@
 const { SlashCommandBuilder } = require("discord.js");
 const econHandler = require('../../methods/economyHandler.js');
 const {DAILY_POINTS, GENERAL_CHAT_ID} = require('../../data/economy/econSettings.json');
+const {botName} = require('../../config.json');
 
 module.exports = {
     data: new SlashCommandBuilder()
     .setName("daily")
-    .setDescription(`Get your daily ${DAILY_POINTS.toLocaleString("en-US")} Ricebot points!`),
+    .setDescription(`Get your daily ${DAILY_POINTS.toLocaleString("en-US")} ${botName} points!`),
 
     async execute(interaction, client) {
         const user = interaction.member.user;

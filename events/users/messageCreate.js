@@ -14,7 +14,7 @@ module.exports = {
         if (message.member.user.bot)
             return;
 
-        // Add points to the ricebot database
+        // Add points to the bot database
         try {
             // economy
             const member = message.member;
@@ -41,7 +41,7 @@ module.exports = {
             console.log(err);
         }
 
-        // Check to see if the message contains a mention of the Ricebot
+        // Check to see if the message contains a mention of the bot
         
     },
 

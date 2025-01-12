@@ -1,11 +1,12 @@
 const { SlashCommandBuilder } = require("discord.js");
 const econHandler = require('../../methods/economyHandler.js');
 const {MONTHLY_POINTS} = require('../../data/economy/econSettings.json');
+const {botName} = require('../../config.json');
 
 module.exports = {
     data: new SlashCommandBuilder()
         .setName("monthly")
-        .setDescription(`Get your monthly ${MONTHLY_POINTS.toLocaleString("en-US")} Ricebot points!`),
+        .setDescription(`Get your monthly ${MONTHLY_POINTS.toLocaleString("en-US")} ${botName} points!`),
 
     async execute(interaction, client) {
         const user = interaction.member.user;
