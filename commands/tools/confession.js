@@ -1,5 +1,6 @@
 const { EmbedBuilder } = require('@discordjs/builders');
 const { SlashCommandBuilder, GuildForumThreadManager } = require('discord.js');
+const {confessionTXTChannel} = require('../../config.json');
 
 module.exports = {
     data: new SlashCommandBuilder()
@@ -42,13 +43,13 @@ module.exports = {
         .setColor(0x9C59B6)
         .setTimestamp(Date.now());
         
-        if (interaction.channel.id == 1228222525109043211){
+        if (interaction.channel.id == confessionTXTChannel){
             const d = Date();
             console.log(`${interaction.member.user.displayName}(${interaction.member.user.username}) created a confession at ${d.toLocaleString("en-US")}`);
             await interaction.reply({content: "Your confession was sent!", ephemeral:true});
             await interaction.channel.send({embeds:[embed], ephemeral: false});
         }else{
-            const confessionChannel = interaction.guild.channels.cache.get('1228222525109043211').toString();
+            const confessionChannel = interaction.guild.channels.cache.get(confessionTXTChannel).toString();
             await interaction.reply({content: `You're not in the right channel! Head over to ${confessionChannel} to send a confession.`, ephemeral:true});
         }
     },
