@@ -7,7 +7,8 @@ const { token } = require("./config.json");
 
 // Require for discord player
 const { Player } = require("discord-player");
-
+const { DefaultExtractors } = require('@discord-player/extractor');
+ 
 // Create a new client instance
 const client = new Client({
   intents: [
@@ -59,6 +60,8 @@ const player = new Player(client, {
     highWaterMark: 1 << 25
   }
 });
+
+player.extractors.loadMulti(DefaultExtractors);
 
 // Log in to Discord with your client's token
 client.login(token);
