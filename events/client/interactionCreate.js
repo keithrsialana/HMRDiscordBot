@@ -1,4 +1,5 @@
 const { Events } = require('discord.js');
+const {useMainPlayer} = require('discord-player');
 
 module.exports = {
 	name: Events.InteractionCreate,
@@ -15,7 +16,13 @@ module.exports = {
 
 		// Command module async method 'execute' is performed when the interactionCreate event is triggered
 		try {
-			await command.execute(interaction, client);
+			const player = useMainPlayer();
+
+			const data = {
+				guild: interaction.guild,
+			};
+
+			await player.context.provide(data, () => command.execute(interaction, client));
 		} catch (error) {
 			console.error(`Error executing ${interaction.commandName}`);
 			console.error(error);

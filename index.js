@@ -5,6 +5,9 @@ const fs = require("node:fs");
 const { Client, GatewayIntentBits, Collection } = require("discord.js");
 const { token } = require("./config.json");
 
+// Require for discord player
+const { Player } = require("discord-player");
+
 // Create a new client instance
 const client = new Client({
   intents: [
@@ -49,6 +52,13 @@ client.on("multipleResolves", async (type, promise, reason) => {
 
 client.handleEvents();
 client.handleCommands();
+
+const player = new Player(client, {
+  ytdlOptions: {
+    quality: "highestaudio",
+    highWaterMark: 1 << 25
+  }
+});
 
 // Log in to Discord with your client's token
 client.login(token);
