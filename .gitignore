@@ -5,3 +5,4 @@ chatlogs/*.log
 node_modules/
 package-lock.json
 node_modules/*
+data/economy/economy.json
